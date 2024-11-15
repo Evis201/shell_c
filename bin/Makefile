@@ -1,6 +1,6 @@
 .PHONY: all clean
 
-PROGS=main 
+PROGS=hello ls
 CC=gcc
 CFLAGS=
 LDFLAGS=

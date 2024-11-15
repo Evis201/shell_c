@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<dirent.h>
 #include <errno.h>
-
+#include <stdlib.h>
 // Define the struct with correct syntax
 struct file_color {
     const char* Red;
@@ -18,12 +18,12 @@ void init_colors(struct file_color* colors) {
     colors->Yellow = "\033[0;33m";
     colors->Blue = "\033[0;34m";
     colors->Purple = "\033[0;35m";
-}
+};
 struct file
 {
-	char Name[]
-	struct *file_color file_color;
-}
+	struct file_color file_color;
+	char name[];
+};
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <directory>\n", argv[0]);
@@ -38,15 +38,15 @@ int main(int argc, char *argv[]) {
 
     struct dirent *entry;
     struct file_color color;
-    init_colot(&color);
+    init_colors(&color);
     while ((entry = readdir(path)) != NULL) { // Read each entry in the directory
        
-	   switch(entry->d_type)
-	   {
-		   case DT_REG:
+//	   switch(entry->d_type)
+//	   {
+//		   case DT_REG:
 
 
-	   }
+//	   }
 	    printf("Name: %s\n", entry->d_name);
     }
 
