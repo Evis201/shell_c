@@ -14,6 +14,7 @@
 void lireCommande(char *input) {
     printf("myshell> ");
     fgets(input, MAX_INPUT_SIZE, stdin);
-    input[strcspn(input, "\n")] = 0;
+    input[strcspn(input, "\n")] = 0; // RETIIRE CETTE PUTAIN DE RETOUR DE LIGNE
 }
 
+//
