@@ -11,12 +11,24 @@
 #define MAX_INPUT_SIZE 1024
 #define MAX_ARGS 64
 
-// FUNCTION PROTOTYPES
-void lireCommande(char *input) {
+
+// FUNCTION TYPE DEFINITION
+void readCommand(char *input) {
     printf("myshell> ");
     fgets(input, MAX_INPUT_SIZE, stdin);
     input[strcspn(input, "\n")] = 0; // RETIIRE CETTE PUTAIN DE RETOUR DE LIGNE
 }
+
+void analyseCommand(char *input, char **args) {
+    int i = 0;
+    args[i] = strtok(input, " ");
+    while (args[i] != NULL && i < MAX_ARGS - 1) {
+        i++;
+        args[i] = strtok(NULL, " ");
+    }
+    args[i] = NULL; // Null terminate IMPORTANT POUR EXECVP
+}
+
 //
 
 
