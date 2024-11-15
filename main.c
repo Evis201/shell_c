@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/mman.h>
 
 // INPUT BUFFER SIZE
 #define MAX_INPUT_SIZE 1024
@@ -16,5 +17,10 @@ void lireCommande(char *input) {
     fgets(input, MAX_INPUT_SIZE, stdin);
     input[strcspn(input, "\n")] = 0; // RETIIRE CETTE PUTAIN DE RETOUR DE LIGNE
 }
-
 //
+
+
+int start_bin(pid_t pid)
+{
+char * argv_list[] = {"hello","NULL","/bin",NULL};
+}
