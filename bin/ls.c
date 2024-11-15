@@ -51,14 +51,14 @@ int main(int argc, char *argv[]) {
     struct file_color color;
     init_colors(&color);
 
-     while ((entry = readdir(path)) != NULL) { // Read each entry in the directory
-        // Get file extension
+     while ((entry = readdir(path)) != NULL) { 
+        
         const char* ext = get_extension(entry->d_name);
 
         char buffer[256];  // Buffer to hold the final string to print
 
         if (entry->d_type == DT_REG) {  // Regular file
-            // Check the file extension and assign color
+           
             if (strcmp(ext, "py") == 0) {
                 snprintf(buffer, sizeof(buffer), "%s%s 🐍%s", color.Green, entry->d_name, color.Reset);
                 printf("%s\n", buffer);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    closedir(path); // Close the directory
+    closedir(path); 
     return EXIT_SUCCESS;
 }
 
