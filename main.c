@@ -16,7 +16,7 @@
 void readCommand(char *input) {
     printf("myshell> ");
     fgets(input, MAX_INPUT_SIZE, stdin);
-    input[strcspn(input, "\n")] = 0; // RETIIRE CETTE PUTAIN DE RETOUR DE LIGNE
+    input[strcspn(input, "\n")] = 0; // RETIRE CETTE PUTAIN DE RETOUR DE LIGNE
 }
 
 void analyseCommand(char *input, char **args) {
@@ -29,10 +29,22 @@ void analyseCommand(char *input, char **args) {
     args[i] = NULL; // Null terminate IMPORTANT POUR EXECVP
 }
 
-//
+void changeDirectory(char **args) {  // CD FUNCTION
+    if (args[1] == NULL) {
+        fprintf(stderr, "cd: expected argument\n");
+    } else {
+        if (chdir(args[1]) != 0) {
+            perror("cd");
+        }
+    }
+}
 
+//
 
 int start_bin(pid_t pid)
 {
 char * argv_list[] = {"hello","NULL","/bin",NULL};
 }
+
+// MAIN FUNCTION
+
