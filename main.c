@@ -47,4 +47,6 @@ char * argv_list[] = {"hello","NULL","/bin",NULL};
 }
 
 // MAIN FUNCTION
-
+void main() {
+    
+}
