@@ -48,5 +48,22 @@ char * argv_list[] = {"hello","NULL","/bin",NULL};
 
 // MAIN FUNCTION
 void main() {
-    
+    char input[MAX_INPUT_SIZE];
+    char *args[MAX_ARGS];
+
+    while (1) {
+        readCommand(input);
+        analyseCommand(input, args);
+
+        if (args[0] == NULL) {
+            continue;
+        }
+
+        if (strcmp(args[0], "cd") == 0) {
+            changeDirectory(args);
+        } else {
+        }
+    }
+
+    return 0;
 }
