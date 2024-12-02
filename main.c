@@ -42,16 +42,15 @@ void changeDirectory(char **args) {  // CD FUNCTION
 void executeCommand(char **args) {
     pid_t pid = fork();
     if (pid == 0) {
-        // Child process
         if (execvp(args[0], args) == -1) {
             perror("execvp");
         }
         exit(EXIT_FAILURE);
     } else if (pid < 0) {
-        // Forking error
+        // ERROR FORKING
         perror("fork");
     } else {
-        // Parent process
+        // PARENT PROCESS
         int status;
         waitpid(pid, &status, 0);
     }
