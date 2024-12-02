@@ -39,6 +39,24 @@ void changeDirectory(char **args) {  // CD FUNCTION
     }
 }
 
+void executeCommand(char **args) {
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Child process
+        if (execvp(args[0], args) == -1) {
+            perror("execvp");
+        }
+        exit(EXIT_FAILURE);
+    } else if (pid < 0) {
+        // Forking error
+        perror("fork");
+    } else {
+        // Parent process
+        int status;
+        waitpid(pid, &status, 0);
+    }
+}
+
 //
 
 int start_bin(pid_t pid)
@@ -61,10 +79,15 @@ void main() {
 
         if (strcmp(args[0], "cd") == 0) {
             changeDirectory(args);
+        } else if (strcmp(args[0], "hello") == 0) {
+            char *hello_args[] = {"/bin/hello", NULL};
+            executeCommand(hello_args);
         } else {
-            // FORKING
+            executeCommand(args);
         }
     }
 
     return 0;
 }
+
+// END OF FILE
